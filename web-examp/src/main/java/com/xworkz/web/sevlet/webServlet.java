@@ -34,5 +34,6 @@ public class webServlet extends HttpServlet {
 
         RequestDispatcher request=req.getRequestDispatcher("OrnamentResult.jsp");
         request.forward(req,resp);
+
     }
 }
