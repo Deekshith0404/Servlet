@@ -1,6 +1,8 @@
 package com.xworks.formsexampl.servlet;
 
 import com.xworks.formsexampl.dto.MilkFormDto;
+import com.xworks.formsexampl.service.MilkService;
+import com.xworks.formsexampl.service.MilkServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet(urlPatterns = "/milk",loadOnStartup = 1)
-public class milkServlet extends HttpServlet {
+public class MilkServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -33,9 +35,15 @@ public class milkServlet extends HttpServlet {
         map.put("buffalo",70);
         int price=map.get(types);
         int cost=price*quantityAft;
-        req.setAttribute("cost",cost);
-        req.setAttribute("milkFormDto",milkFormDto);
-        RequestDispatcher request=req.getRequestDispatcher("milkResult.jsp");
+        MilkService milkService=new MilkServiceImpl();
+        boolean result=milkService.save(milkFormDto);
+        if (result==true){
+            req.setAttribute("message","the Cost for "+types+" milk is :"+cost);
+        }else {
+            req.setAttribute("message","not saved ");
+
+        }
+        RequestDispatcher request=req.getRequestDispatcher("MilkForm.jsp");
         request.forward(req,resp);
 
     }

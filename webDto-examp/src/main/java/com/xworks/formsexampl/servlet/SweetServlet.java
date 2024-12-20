@@ -1,6 +1,8 @@
 package com.xworks.formsexampl.servlet;
 
 import com.xworks.formsexampl.dto.SweetFormDto;
+import com.xworks.formsexampl.service.SweetService;
+import com.xworks.formsexampl.service.SweetServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,9 +39,14 @@ public class SweetServlet extends HttpServlet {
          if (special.equals("SPECIAL")) {
              cost=cost+(quantity*30);
          }
-         req.setAttribute("cost",cost);
-         req.setAttribute("sweetFormDto",sweetFormDto);
-        RequestDispatcher request=req.getRequestDispatcher("SweetResult.jsp");
+        SweetService service=new SweetServiceImpl();
+         boolean result=service.save(sweetFormDto);
+         if (result==true) {
+                req.setAttribute("message","The total cost for"+sweetName+" sweets is:"+cost);
+             }else{
+                 req.setAttribute("message","not saved");
+             }
+        RequestDispatcher request=req.getRequestDispatcher("SweetForm.jsp");
         request.forward(req,resp);
 
 

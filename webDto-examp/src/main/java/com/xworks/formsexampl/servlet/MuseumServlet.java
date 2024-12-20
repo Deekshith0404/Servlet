@@ -2,6 +2,8 @@ package com.xworks.formsexampl.servlet;
 
 import com.xworks.formsexampl.dto.MilkFormDto;
 import com.xworks.formsexampl.dto.MuseumFormDto;
+import com.xworks.formsexampl.service.MuseumService;
+import com.xworks.formsexampl.service.MuseumServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,9 +29,16 @@ public class MuseumServlet extends HttpServlet {
 
         int totalCost=(numOfAdults*100)+(numOfChildren*50);
 
-        req.setAttribute("totalCost",totalCost);
-        req.setAttribute("museumFormDto",museumFormDto);
-        RequestDispatcher request=req.getRequestDispatcher("MuseumResult.jsp");
+        MuseumService museumService=new MuseumServiceImpl();
+        boolean result=museumService.save(museumFormDto);
+        if (result==true) {
+            req.setAttribute("message", "the customer name is : " + customerName + "   and the total price is :" + totalCost);
+        }else {
+            req.setAttribute("message", "not found");
+
+        }
+
+        RequestDispatcher request=req.getRequestDispatcher("MusuemTicketForm.jsp");
         request.forward(req,resp);
 
     }

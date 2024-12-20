@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII"%>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
 <style>
@@ -29,55 +31,81 @@ label {
     margin-top: 10px;
 }
 
-input[type="submit"] {
+input[type="submit"],
+input[type="reset"] {
     margin-top: 20px;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
     cursor: pointer;
+    color: white;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
 }
 
 input[type="submit"]:hover {
     background-color: #45a049;
 }
 
+input[type="reset"] {
+    background-color: #f44336;
+    margin-left: 10px;
+}
+
+input[type="reset"]:hover {
+    background-color: #e53935;
+}
 </style>
 </head>
 <body>
-<form action="sweet" method="post">
-<label for="shopName">Shop Name:</label>
-<select id="shopName" name="shopName" required>
-<option value=""></option>
-<option value="Venkateshwara Sweets">Venkateshwara Sweets</option>
-<option value="jodhpur">jodhpur Sweets</option>
-<option value="knati sweets">knati sweets</option>
-<option value="patel sweets">patel sweets</option>
-<option value="banaras sweets">banaras sweets</option>
-</select><br>
-<label for="sweetName">Sweet Name:</label>
-<select id="sweetName" name="sweetName" required>
-<option value=""></option>
-<option value="Gulab jamun">Gulab jamun</option>
-<option value="mysore pak">mysore pak</option>
-<option value="jalebi">jalebi</option>
-<option value="rasgulla">rasgulla</option>
-<option value="kaju katli">kaju katli</option>
-<option value="kheer">kheer</option>
-</select><br><br>
- SPECIAL<input type="radio" id="special" name="special" value="SPECIAL"> <br>NOT Special
- <input type="radio" id="special" name="special" value="not special"><br>
 
- <label for="quantity">Quantity:</label>
- <select id="quantity" name="quantity" required>
- <option value=""></option>
- <option value="0.5">500 grams</option>
- <option value="1">1 kg</option>
- <option value="1.5">1.5 kg</option>
- <option value="2">2 kg</option>
- </select><br>
-<input type="submit" value="submit"/>
-</form>
+<div class="form-container">
+    <h1>Sweet Order Form</h1>
+
+    <!-- Display the message on top -->
+    <div>
+        ${message}
+    </div>
+
+    <form action="sweet" method="post">
+        <label for="shopName">Shop Name:</label>
+        <select id="shopName" name="shopName" required>
+            <option value=""></option>
+            <option value="Venkateshwara Sweets">Venkateshwara Sweets</option>
+            <option value="jodhpur">Jodhpur Sweets</option>
+            <option value="knati sweets">Knati Sweets</option>
+            <option value="patel sweets">Patel Sweets</option>
+            <option value="banaras sweets">Banaras Sweets</option>
+        </select><br>
+
+        <label for="sweetName">Sweet Name:</label>
+        <select id="sweetName" name="sweetName" required>
+            <option value=""></option>
+            <option value="Gulab jamun">Gulab Jamun</option>
+            <option value="mysore pak">Mysore Pak</option>
+            <option value="jalebi">Jalebi</option>
+            <option value="rasgulla">Rasgulla</option>
+            <option value="kaju katli">Kaju Katli</option>
+            <option value="kheer">Kheer</option>
+        </select><br><br>
+
+        SPECIAL <input type="radio" id="special" name="special" value="SPECIAL"><br>
+        NOT Special <input type="radio" id="special" name="special" value="not special"><br>
+
+        <label for="quantity">Quantity:</label>
+        <select id="quantity" name="quantity" required>
+            <option value=""></option>
+            <option value="0.5">500 grams</option>
+            <option value="1">1 kg</option>
+            <option value="1.5">1.5 kg</option>
+            <option value="2">2 kg</option>
+        </select><br>
+        <input type="submit" value="submit" id="submit"/>
+        <input type="reset" value="Clear"/>
+    </form>
+</div>
+
 </body>
 </html>
