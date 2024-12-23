@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/cricket" ,loadOnStartup = 1)
 public class CricketServlet extends HttpServlet {
+    private CricketService cricketService=new CricketServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,10 +29,10 @@ public class CricketServlet extends HttpServlet {
 
 
         CricketFormDto cricketFormDto=new CricketFormDto(TeamName,budget,noOfPlayers,sponsers,homeGround,owner,IplSponser,fanOrNot);
-        CricketService cricketService=new CricketServiceImpl();
+
         boolean result=cricketService.save(cricketFormDto);
         if (result==true) {
-            req.setAttribute("message", "team name :" + TeamName + "total budget :" + budget);
+            req.setAttribute("message", "team name : " + TeamName + " total budget : " + budget);
         }else {
             req.setAttribute("message", "not found");
 

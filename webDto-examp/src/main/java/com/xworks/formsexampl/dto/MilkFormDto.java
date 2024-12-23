@@ -1,15 +1,30 @@
 package com.xworks.formsexampl.dto;
 
+import com.xworks.formsexampl.repository.MilkRepository;
+
 public class MilkFormDto {
 
     private String brand;
     private String type;
     private int quantity;
+    private double total;
+    public MilkFormDto(){
 
-    public MilkFormDto(String brand, String type, int quantity) {
+    }
+
+    public MilkFormDto(String brand, String type, int quantity,double total) {
         this.brand = brand;
         this.type = type;
         this.quantity = quantity;
+        this.total=total;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getBrand() {
@@ -42,6 +57,7 @@ public class MilkFormDto {
                 "brand='" + brand + '\'' +
                 ", type='" + type + '\'' +
                 ", quantity=" + quantity +
+                ", total=" + total +
                 '}';
     }
 }

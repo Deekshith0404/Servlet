@@ -16,6 +16,7 @@ import java.util.Map;
 
 @WebServlet(urlPatterns = "/sweet",loadOnStartup = 1)
 public class SweetServlet extends HttpServlet {
+    private SweetService service=new SweetServiceImpl();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,7 +25,6 @@ public class SweetServlet extends HttpServlet {
         String special=req.getParameter("special");
         double quantity=Double.parseDouble(req.getParameter("quantity"));
 
-        SweetFormDto sweetFormDto=new SweetFormDto(shopName,sweetName,special,quantity);
         Map<String,Integer> map01 =new HashMap<>();
         map01.put("Gulab jamun",150);
         map01.put("mysore pak",100);
@@ -39,10 +39,12 @@ public class SweetServlet extends HttpServlet {
          if (special.equals("SPECIAL")) {
              cost=cost+(quantity*30);
          }
-        SweetService service=new SweetServiceImpl();
-         boolean result=service.save(sweetFormDto);
+        SweetFormDto sweetFormDto=new SweetFormDto(shopName,sweetName,special,quantity,cost);
+
+
+        boolean result=service.save(sweetFormDto);
          if (result==true) {
-                req.setAttribute("message","The total cost for"+sweetName+" sweets is:"+cost);
+                req.setAttribute("message","The total cost for "+sweetName+" sweets is :"+cost);
              }else{
                  req.setAttribute("message","not saved");
              }

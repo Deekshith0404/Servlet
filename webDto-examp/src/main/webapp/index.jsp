@@ -50,7 +50,7 @@ a:hover {
     <h1>Available Forms</h1>
     <h4><a href="MilkForm.jsp">Milk Form</a></h4>
     <h4><a href="SweetForm.jsp">Sweet Form</a></h4>
-    <h4><a href="MuseumTicketForm.jsp">Museum Form</a></h4>
+    <h4><a href="MusuemTicketForm.jsp">Museum Form</a></h4>
     <h4><a href="CricketForm.jsp">Cricket Form</a></h4>
 </div>
 

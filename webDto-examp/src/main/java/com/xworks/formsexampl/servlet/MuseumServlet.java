@@ -15,6 +15,8 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/museum",loadOnStartup = 1)
 public class MuseumServlet extends HttpServlet {
+
+    private MuseumService museumService=new MuseumServiceImpl();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String customerName=req.getParameter("customerName");
@@ -23,13 +25,13 @@ public class MuseumServlet extends HttpServlet {
         long mobileNumber=Long.parseLong(req.getParameter("mobileNumber"));
         String email=req.getParameter("email");
 
-
-        MuseumFormDto museumFormDto=new MuseumFormDto(customerName,numOfAdults,numOfChildren,mobileNumber,email);
-
-
         int totalCost=(numOfAdults*100)+(numOfChildren*50);
+        MuseumFormDto museumFormDto=new MuseumFormDto(customerName,numOfAdults,numOfChildren,mobileNumber,email,totalCost);
 
-        MuseumService museumService=new MuseumServiceImpl();
+
+
+
+
         boolean result=museumService.save(museumFormDto);
         if (result==true) {
             req.setAttribute("message", "the customer name is : " + customerName + "   and the total price is :" + totalCost);

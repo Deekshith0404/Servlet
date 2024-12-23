@@ -1,14 +1,12 @@
 package com.xworks.formsexampl.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
 public class CricketFormDto {
     private String teamName;
     private int budget;

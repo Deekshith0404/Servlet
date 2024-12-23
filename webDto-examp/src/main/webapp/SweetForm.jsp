@@ -2,6 +2,50 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
+<script>
+function validateform() {
+    const shopName = document.getElementById("shopName").value;
+    const sweetName = document.getElementById("sweetName").value;
+    const special = document.querySelector('input[name="special"]:checked');
+    const quantity = document.getElementById("quantity").value;
+    let isValid = true;
+
+    // Validate shop name selection
+    if (shopName === "") {
+        document.getElementById("errorShopName").innerText = "Please select a shop name.";
+        isValid = false;
+    } else {
+        document.getElementById("errorShopName").innerText = "";
+    }
+
+    // Validate sweet name selection
+    if (sweetName === "") {
+        document.getElementById("errorSweetName").innerText = "Please select a sweet name.";
+        isValid = false;
+    } else {
+        document.getElementById("errorSweetName").innerText = "";
+    }
+
+    // Validate special/not special selection
+    if (!special) {
+        document.getElementById("errorSpecial").innerText = "Please select if the sweet is special or not.";
+        isValid = false;
+    } else {
+        document.getElementById("errorSpecial").innerText = "";
+    }
+
+    // Validate quantity (must be greater than 0)
+    if (quantity <= 0) {
+        document.getElementById("errorQuantity").innerText = "Quantity must be greater than 0.";
+        isValid = false;
+    } else {
+        document.getElementById("errorQuantity").innerText = "";
+    }
+
+    return isValid;
+}
+
+</script>
 <style>
 body {
     display: flex;
@@ -69,7 +113,7 @@ input[type="reset"]:hover {
         ${message}
     </div>
 
-    <form action="sweet" method="post">
+    <form action="sweet" method="post" name="sweetform" onsubmit=" return validateform()">
         <label for="shopName">Shop Name:</label>
         <select id="shopName" name="shopName" required>
             <option value=""></option>

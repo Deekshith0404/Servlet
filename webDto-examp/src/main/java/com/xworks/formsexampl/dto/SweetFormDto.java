@@ -5,12 +5,22 @@ public class SweetFormDto {
     private String sweetName;
     private String special;
     private double Quantity;
+    private double price;
 
-    public SweetFormDto(String shopName, String sweetName, String special, double quantity) {
+    public SweetFormDto(String shopName, String sweetName, String special, double quantity,double price) {
         this.shopName = shopName;
         this.sweetName = sweetName;
         this.special = special;
-        Quantity = quantity;
+        this.Quantity = quantity;
+        this.price=price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getShopName() {
@@ -52,6 +62,7 @@ public class SweetFormDto {
                 ", sweetName='" + sweetName + '\'' +
                 ", special='" + special + '\'' +
                 ", Quantity=" + Quantity +
+                ", price=" + price +
                 '}';
     }
 }

@@ -16,6 +16,8 @@ import java.util.Map;
 
 @WebServlet(urlPatterns = "/milk",loadOnStartup = 1)
 public class MilkServlet extends HttpServlet {
+
+    private MilkService milkService=new MilkServiceImpl();
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -24,7 +26,6 @@ public class MilkServlet extends HttpServlet {
         String quantity=req.getParameter("quantity");
         int quantityAft=Integer.parseInt(quantity);
 
-        MilkFormDto milkFormDto=new MilkFormDto(brand,types,quantityAft);
 
         Map<String,Integer> map=new HashMap<>();
         map.put("SPECIAL",56);
@@ -35,7 +36,9 @@ public class MilkServlet extends HttpServlet {
         map.put("buffalo",70);
         int price=map.get(types);
         int cost=price*quantityAft;
-        MilkService milkService=new MilkServiceImpl();
+        MilkFormDto milkFormDto=new MilkFormDto(brand,types,quantityAft,cost);
+
+
         boolean result=milkService.save(milkFormDto);
         if (result==true){
             req.setAttribute("message","the Cost for "+types+" milk is :"+cost);
