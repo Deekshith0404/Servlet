@@ -1,5 +1,4 @@
 package com.xworks.formsexampl.servlet;
-
 import com.xworks.formsexampl.dto.SweetFormDto;
 import com.xworks.formsexampl.service.SweetService;
 import com.xworks.formsexampl.service.SweetServiceImpl;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(urlPatterns = "/sweet",loadOnStartup = 1)
@@ -19,8 +19,8 @@ public class SweetServlet extends HttpServlet {
     private SweetService service=new SweetServiceImpl();
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String shopName=req.getParameter("shopName");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+         String shopName=req.getParameter("shopName");
         String sweetName=req.getParameter("sweetName");
         String special=req.getParameter("special");
         double quantity=Double.parseDouble(req.getParameter("quantity"));
@@ -52,5 +52,15 @@ public class SweetServlet extends HttpServlet {
         request.forward(req,resp);
 
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        List<SweetFormDto> list=service.getAll();
+        req.setAttribute("list",list);
+
+        RequestDispatcher request=req.getRequestDispatcher("SweetResult.jsp");
+        request.forward(req,resp);
     }
 }

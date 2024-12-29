@@ -1,8 +1,11 @@
 package com.xworks.formsexampl.service;
 
 import com.xworks.formsexampl.dto.MilkFormDto;
-import com.xworks.formsexampl.repository.MilkRepository;
-import com.xworks.formsexampl.repository.MilkRepositoryImpl;
+import com.xworks.formsexampl.dao.MilkRepository;
+import com.xworks.formsexampl.dao.MilkRepositoryImpl;
+
+import java.util.Collections;
+import java.util.List;
 
 public class MilkServiceImpl implements MilkService{
     private MilkRepository milkRepository=new MilkRepositoryImpl();
@@ -12,5 +15,11 @@ public class MilkServiceImpl implements MilkService{
         System.out.println("saved");
         boolean result=milkRepository.save(milkFormDto);
         return result;
+    }
+
+    @Override
+    public List<MilkFormDto> getall() {
+        List<MilkFormDto> list=milkRepository.getall();
+        return  list;
     }
 }

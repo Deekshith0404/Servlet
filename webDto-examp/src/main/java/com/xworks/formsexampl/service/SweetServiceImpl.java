@@ -1,8 +1,10 @@
 package com.xworks.formsexampl.service;
 
 import com.xworks.formsexampl.dto.SweetFormDto;
-import com.xworks.formsexampl.repository.SweetRepository;
-import com.xworks.formsexampl.repository.SweetRepositoryImpl;
+import com.xworks.formsexampl.dao.SweetRepository;
+import com.xworks.formsexampl.dao.SweetRepositoryImpl;
+
+import java.util.List;
 
 public class SweetServiceImpl implements SweetService{
 
@@ -13,4 +15,12 @@ public class SweetServiceImpl implements SweetService{
         boolean result=sweetRepository.save(sweetFormDto);
         return result;
     }
+
+    @Override
+    public List<SweetFormDto> getAll() {
+        List<SweetFormDto> list=sweetRepository.getAll();
+        return list;
+    }
+
+
 }

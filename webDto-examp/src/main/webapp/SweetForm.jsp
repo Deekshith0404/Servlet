@@ -112,8 +112,9 @@ input[type="reset"]:hover {
     <div>
         ${message}
     </div>
-
+     <a href="sweet">getall</a>
     <form action="sweet" method="post" name="sweetform" onsubmit=" return validateform()">
+
         <label for="shopName">Shop Name:</label>
         <select id="shopName" name="shopName" required>
             <option value=""></option>

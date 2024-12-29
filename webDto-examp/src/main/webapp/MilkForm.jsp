@@ -87,6 +87,7 @@
     <div class="form-container">
     <h1>Milk Order Form</h1>
     <div> ${message} </div>
+    <a href="milk">get all</a>
     <form action="milk" method="post" name="formname" onsubmit="return validateform()">
     <label for="brandName">Milk Brand:</label>
     <input type="text" id="brandName" name="brandName" /><br><br>

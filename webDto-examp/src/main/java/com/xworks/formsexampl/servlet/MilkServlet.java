@@ -12,15 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(urlPatterns = "/milk",loadOnStartup = 1)
 public class MilkServlet extends HttpServlet {
 
     private MilkService milkService=new MilkServiceImpl();
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String brand=req.getParameter("brandName");
         String types=req.getParameter("types");
         String quantity=req.getParameter("quantity");
@@ -49,5 +50,14 @@ public class MilkServlet extends HttpServlet {
         RequestDispatcher request=req.getRequestDispatcher("MilkForm.jsp");
         request.forward(req,resp);
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        List<MilkFormDto> list=milkService.getall();
+        req.setAttribute("list",list);
+        RequestDispatcher requestDispatcher=req.getRequestDispatcher("MilkResult.jsp");
+        requestDispatcher.forward(req,resp);
     }
 }

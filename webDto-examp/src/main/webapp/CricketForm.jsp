@@ -131,6 +131,7 @@
     <div>
         ${message}
     </div>
+    <a href="cricket"> get All</a>
 
     <form action="cricket" method="post" onsubmit="return validateForm()">
         <label for="TeamName">Team Name:</label>

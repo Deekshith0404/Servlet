@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/museum",loadOnStartup = 1)
 public class MuseumServlet extends HttpServlet {
 
     private MuseumService museumService=new MuseumServiceImpl();
+
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String customerName=req.getParameter("customerName");
         int numOfAdults =Integer.parseInt(req.getParameter("numOfAdults"));
         int numOfChildren=Integer.parseInt(req.getParameter("numOfChildren"));
@@ -43,5 +45,14 @@ public class MuseumServlet extends HttpServlet {
         RequestDispatcher request=req.getRequestDispatcher("MusuemTicketForm.jsp");
         request.forward(req,resp);
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<MuseumFormDto> list=museumService.getall();
+
+        req.setAttribute("list",list);
+        RequestDispatcher dispatcher=req.getRequestDispatcher("MuseumResult.jsp");
+        dispatcher.forward(req,resp);
     }
 }

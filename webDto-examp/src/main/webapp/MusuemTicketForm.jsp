@@ -100,6 +100,7 @@
     <div class="form-container">
         <h1>Museum Ticket Form</h1>
         <div>${message}</div>
+        <a href="museum">get All</a>
         <form action="museum" method="post" onsubmit="return validateForm()">
             <label for="customerName">Customer Name:</label>
             <input type="text" id="customerName" name="customerName" required/><br>

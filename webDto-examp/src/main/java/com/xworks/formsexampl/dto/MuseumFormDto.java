@@ -7,8 +7,17 @@ public class MuseumFormDto {
     private long mobileNumber;
     private String email;
     private double price;
+    private int id;
 
-    public MuseumFormDto(String name, int numOfAdults, int numOfChildren, long mobileNumber, String email,double price) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public MuseumFormDto(String name, int numOfAdults, int numOfChildren, long mobileNumber, String email, double price) {
         this.name = name;
         this.numOfAdults = numOfAdults;
         this.numOfChildren = numOfChildren;
@@ -74,6 +83,7 @@ public class MuseumFormDto {
                 ", mobileNumber=" + mobileNumber +
                 ", email='" + email + '\'' +
                 ", price=" + price +
+                ", id=" + id +
                 '}';
     }
 }

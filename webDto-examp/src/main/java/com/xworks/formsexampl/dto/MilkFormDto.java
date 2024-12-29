@@ -1,18 +1,25 @@
 package com.xworks.formsexampl.dto;
 
-import com.xworks.formsexampl.repository.MilkRepository;
-
 public class MilkFormDto {
 
     private String brand;
     private String type;
     private int quantity;
     private double total;
+    private int id;
     public MilkFormDto(){
 
     }
 
-    public MilkFormDto(String brand, String type, int quantity,double total) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public MilkFormDto(String brand, String type, int quantity, double total) {
         this.brand = brand;
         this.type = type;
         this.quantity = quantity;
@@ -58,6 +65,7 @@ public class MilkFormDto {
                 ", type='" + type + '\'' +
                 ", quantity=" + quantity +
                 ", total=" + total +
+                ", id=" + id +
                 '}';
     }
 }
